@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - Stream Master Pro</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Support page for Stream Master Pro - Get help and contact our support team">
+    <meta name="keywords" content="stream master pro, support, help, contact">
+
+    <meta property="og:title" content="Support - Stream Master Pro">
+    <meta property="og:description"
+        content="Support page for Stream Master Pro - Get help and contact our support team">
+    <meta property="og:image" content="./files/meta-image.jpg">
+
+    <!-- Existing CSS files -->
+    <link rel="stylesheet" href="./files/jquery-ui.css">
+    <link rel="stylesheet" href="./files/motion-ui.min.css">
+    <link href="./files/app.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles -->
+    <style>
+        :root {
+            --jive-yellow: #FFD84D;
+            --jive-coral: #FF7E65;
+            --jive-green: #4CD4A9;
+            --jive-purple: #9B7EFF;
+            --jive-blue: #65B1FF;
+            --primary-900: #1A1A1A;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+        }
+
+        .nav-container {
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo img {
+            height: 2rem;
+        }
+
+        .support-content {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .colorful-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            text-align: center;
+            background: linear-gradient(45deg,
+                    #0099FF,
+                    #00CC99,
+                    #9966FF,
+                    #FFCC33);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient 8s ease infinite;
+            margin-bottom: 0.5rem;
+            line-height: 1.1;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .subtitle {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #6B7280;
+            margin-bottom: 2rem;
+        }
+
+        .description {
+            font-size: 1.25rem;
+            color: #6B7280;
+            margin-bottom: 3rem;
+            line-height: 1.5;
+        }
+
+        .support-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: white;
+            background-color: var(--primary-900);
+            border-radius: 9999px;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .support-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .support-button:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="relative">
+    <div class="flex flex-col min-h-screen h-full mx-auto overflow-hidden relative">
+        <nav class="nav-container" style="justify-content: center;">
+            <a href="#" class="logo">
+                <img src="./files/logo-full.svg" alt="Stream Master Pro" style="width: 96px; height: 96px;">
+            </a>
+        </nav>
+
+        <div class="flex-grow">
+            <div
+                class="absolute top-0 mx-auto left-1/2 transform -translate-x-1/2 z-[-10] w-full md:w-[1200px] lg:w-[1600px] max-w-screen">
+                <img src="./files/home-shapes-full.svg" class="hidden lg:block w-full h-full object-cover" alt="Shapes">
+                <img src="./files/home-shapes-tablet.svg" class="hidden md:block lg:hidden w-full h-full object-cover"
+                    alt="Shapes">
+                <img src="./files/home-shapes-mobile.svg" class="md:hidden w-full h-full object-cover" alt="Shapes">
+            </div>
+
+            <main class="support-content relative">
+                <h1 class="colorful-title">Stream Master Pro</h1>
+                <h2 class="colorful-title">Support</h2>
+                <h2 class="subtitle">How can we help you?</h2>
+                <p class="description">
+                    Having issues with Stream Master Pro? Our support team is here to help you.
+                    Click the button below to send us an email, and we'll get back to you as soon as possible.
+                </p>
+                <button onclick="sendSupportEmail()" class="support-button">
+                    Contact Support Team
+                </button>
+            </main>
+        </div>
+
+    </div>
+
+    <!-- Existing JS files -->
+    <script src="./files/jquery.min.js"></script>
+    <script src="./files/jquery-ui.min.js"></script>
+    <script src="./files/flowbite.min.js"></script>
+
+    <script>
+        function sendSupportEmail() {
+            const subject = encodeURIComponent('Stream Master Pro Support Request');
+            const body = encodeURIComponent(
+                'Hello Stream Master Pro Support Team,\n\n' +
+                'I need assistance with the following:\n\n' +
+                '- App Version:\n' +
+                '- iOS Version:\n' +
+                '- Issue Description:\n\n' +
+                'Best regards'
+            );
+            window.location.href = `mailto:support@streammasterpro.com?subject=${subject}&body=${body}`;
+        }
+    </script>
+</body>
+
+</html>

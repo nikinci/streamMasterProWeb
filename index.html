@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stream Master Pro - Ultimate Live Streaming & Video Player App</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Stream Master Pro - The ultimate iOS app for live streaming, video playback, and recording. Features AirPlay, Google Cast, unlimited playlists, and smart caching for the best streaming experience.">
+    <meta name="keywords"
+        content="stream master pro, ios streaming app, live streaming, video player, airplay, google cast, stream recording, playlist manager, video caching, hd streaming">
+
+    <meta property="og:title" content="Stream Master Pro - Ultimate Streaming Experience">
+    <meta property="og:description"
+        content="Professional live streaming and video playback app with AirPlay, Google Cast, unlimited playlists, and smart caching features.">
+    <meta property="og:image" content="./files/meta-image.jpg">
+
+    <!-- Existing CSS files -->
+    <link rel="stylesheet" href="./files/jquery-ui.css">
+    <link rel="stylesheet" href="./files/motion-ui.min.css">
+    <link href="./files/app.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles -->
+    <style>
+        :root {
+            --jive-yellow: #FFD84D;
+            --jive-coral: #FF7E65;
+            --jive-green: #4CD4A9;
+            --jive-purple: #9B7EFF;
+            --jive-blue: #65B1FF;
+            --primary-900: #1A1A1A;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+        }
+
+        .nav-container {
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo img {
+            height: 2rem;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-outline {
+            border: 1px solid #E5E7EB;
+            color: var(--primary-900);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-900);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 2rem 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary-900);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: #6B7280;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .hero-cta {
+            font-size: 1.125rem;
+            padding: 1rem 2rem;
+        }
+
+        .phones-section {
+            position: relative;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .phones-section img {
+            width: 100%;
+            height: auto;
+        }
+
+        .features-section {
+            text-align: center;
+            padding: 4rem 1rem;
+            background-color: #F9FAFB;
+        }
+
+        .features-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-900);
+            margin-bottom: 1rem;
+        }
+
+        .features-subtitle {
+            color: #6B7280;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .feature-card {
+            padding: 1.5rem;
+        }
+
+        .feature-icon {
+            width: 4rem;
+            height: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary-900);
+        }
+
+        .feature-description {
+            color: #6B7280;
+            line-height: 1.5;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+
+        .footer-logo img {
+            height: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-text {
+            color: #6B7280;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-link {
+            color: var(--primary-900);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: var(--jive-coral);
+        }
+
+        .copyright {
+            color: #9CA3AF;
+            font-size: 0.875rem;
+        }
+
+        /* Decorative shapes */
+        .shape {
+            position: absolute;
+            z-index: -1;
+        }
+
+        .shape-yellow {
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 200px;
+            background-color: var(--jive-yellow);
+            opacity: 0.2;
+            border-radius: 50%;
+        }
+
+        .shape-coral {
+            bottom: 20%;
+            right: 0;
+            width: 250px;
+            height: 250px;
+            background-color: var(--jive-coral);
+            opacity: 0.2;
+            border-radius: 50%;
+        }
+
+        .app-store-button {
+            display: inline-block;
+            margin-top: 1rem;
+            transition: transform 0.2s ease;
+        }
+
+        .app-store-button:hover {
+            transform: scale(1.05);
+        }
+
+        .app-store-button img {
+            height: 100px;
+            width: auto;
+        }
+
+        /* Renkli başlık için yeni stiller */
+        .colorful-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            text-align: center;
+            background: linear-gradient(45deg,
+                    #0099FF,
+                    /* Mavi */
+                    #00CC99,
+                    /* Yeşil */
+                    #9966FF,
+                    /* Mor */
+                    #FFCC33
+                    /* Sarı */
+                );
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient 8s ease infinite;
+            margin-bottom: 0.5rem;
+            line-height: 1.1;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .subtitle {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #6B7280;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+
+<body class="relative">
+    <div class="flex flex-col min-h-screen h-full mx-auto overflow-hidden relative">
+        <nav class="nav-container" style="justify-content: center;">
+            <a href="#" class="logo">
+                <img src="./files/logo-full.svg" alt="Stream Master Pro" style="width: 96px; height: 96px;">
+            </a>
+        </nav>
+
+
+        <div class="flex-grow">
+            <div
+                class="absolute top-0 mx-auto left-1/2 transform -translate-x-1/2 z-[-10] w-full md:w-[1200px] lg:w-[1600px] max-w-screen">
+                <img src="./files/home-shapes-full.svg" class="hidden lg:block w-full h-full object-cover" alt="Shapes">
+                <img src="./files/home-shapes-tablet.svg" class="hidden md:block w-full h-full object-cover"
+                    alt="Shapes">
+                <img src="./files/home-shapes-mobile.svg" class="md:hidden w-full h-full object-cover" alt="Shapes">
+            </div>
+
+
+            <section class="hero-section relative">
+
+                <h1 class="colorful-title">Stream Master Pro</h1>
+                <h2 class="subtitle">Your Ultimate Streaming Companion</h2>
+                <p class="hero-description">
+                    Experience seamless live streaming, video playback, and recording with Stream Master Pro.
+                    Featuring AirPlay, Google Cast, unlimited playlists, and smart caching for the ultimate viewing
+                    experience.
+                </p>
+                <a href="https://apps.apple.com/app/id6740746290" class="app-store-button" target="_blank"
+                    onclick="window.open(this.href); return false;">
+                    <img src="./files/app-store-badge.svg" alt="Download on the App Store">
+                </a>
+            </section>
+
+            <section class="phones-section relative">
+                <img src="./files/tv-phones.png" alt="Stream Master Pro App Interface">
+            </section>
+
+
+            <section class="features-section">
+                <h2 class="features-title">Powerful Features for Power Users</h2>
+                <p class="features-subtitle">Everything you need for the perfect streaming experience</p>
+
+                <div class="features-grid">
+                    <div class="feature-card relative">
+                        <img src="./files/feature-1.svg" alt="Live Streaming" class="feature-icon"
+                            style="display: block; margin: 0 auto;">
+                        <h3 class="feature-title">Professional Live Streaming</h3>
+                        <p class="feature-description">
+                            High-quality live streaming with real-time stream information and instant quality switching.
+                        </p>
+                    </div>
+
+                    <div class="feature-card relative">
+                        <img src="./files/feature-2.svg" alt="Casting" class="feature-icon"
+                            style="display: block; margin: 0 auto;">
+                        <h3 class="feature-title">AirPlay & Google Cast</h3>
+                        <p class="feature-description">
+                            Cast your favorite content to any screen with native AirPlay and Google Cast support.
+                        </p>
+                    </div>
+
+                    <div class="feature-card relative ">
+                        <img src="./files/feature-3.svg" alt="Playlists" class="feature-icon"
+                            style="display: block; margin: 0 auto;">
+                        <h3 class="feature-title">Smart Playlist Management</h3>
+                        <p class="feature-description">
+                            Create unlimited playlists, organize by categories, and access your favorites instantly.
+                        </p>
+                    </div>
+
+                    <div class="feature-card relative">
+                        <img src="./files/feature-4.svg" alt="Recording" class="feature-icon"
+                            style="display: block; margin: 0 auto;">
+                        <h3 class="feature-title">Stream Recording</h3>
+                        <p class="feature-description">
+                            Record your favorite streams with one tap and access them anytime, anywhere.
+                        </p>
+                    </div>
+
+                    <div class="feature-card relative">
+                        <img src="./files/feature-5.svg" alt="Smart Caching" class="feature-icon"
+                            style="display: block; margin: 0 auto;">
+                        <h3 class="feature-title">Smart Caching</h3>
+                        <p class="feature-description">
+                            Lightning-fast channel loading with intelligent caching technology.
+                        </p>
+                    </div>
+
+                    <div class="feature-card relative">
+                        <img src="./files/feature-6.svg" alt="Quality Control" class="feature-icon"
+                            style="display: block; margin: 0 auto;">
+                        <h3 class="feature-title">Advanced Player Controls</h3>
+                        <p class="feature-description">
+                            Detailed stream quality information and seamless channel switching.
+                        </p>
+                    </div>
+                </div>
+
+
+            </section>
+        </div>
+
+
+        <footer class="footer relative">
+            <div class="footer-logo">
+                <img src="./files/logo-full.svg" alt="Stream Master Pro"
+                    style="display: block; margin: 0 auto; width: 64px; height: 64px;">
+            </div>
+            <h1 class="colorful-title">Stream Master Pro</h1>
+            <div class=" relative">
+                <a href="https://apps.apple.com/app/id6740746290" class="app-store-button" target="_blank">
+                    <img src="./files/app-store-badge.svg" alt="Download on the App Store">
+                </a>
+            </div>
+            <p class="footer-text">Download now and transform your streaming experience</p>
+            <div class="footer-links">
+                <a href="./privacy-policy.html" class="footer-link">Privacy Policy</a>
+                <a href="./support.html" class="footer-link">Support</a>
+                <a href="mailto:support@streammasterpro.com" class="footer-link">Contact</a>
+            </div>
+            <p class="copyright">© 2024 Stream Master Pro. All rights reserved.</p>
+        </footer>
+    </div>
+    <!-- Existing JS files -->
+    <script src="./files/jquery.min.js"></script>
+    <script src="./files/jquery-ui.min.js"></script>
+    <script src="./files/flowbite.min.js"></script>
+</body>
+
+</html>
